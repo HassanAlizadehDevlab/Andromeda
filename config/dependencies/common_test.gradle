@@ -4,6 +4,10 @@
 dependencies {
     def libraries = rootProject.ext.libraries
 
+    api project(':data')
+    api project(':domain')
+    api project(':presentation')
+
     implementation libraries.kotlin.kotlin
     implementation libraries.dagger.android
     implementation libraries.rx.java
