@@ -8,6 +8,8 @@ import com.android.data.entity.model.remote.character.Thumbnail
 /**
  * Created by hassanalizadeh on 05,September,2020
  */
+fun List<Character>.map(): List<CharacterEntity> = map { it.map() }
+
 fun Character.map(): CharacterEntity = CharacterEntity(
     id = id,
     name = name,
