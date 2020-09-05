@@ -22,7 +22,7 @@ abstract class DataSourceModule {
 
     @Binds
     @Reusable
-    abstract fun provideCharactersDataSource(
+    abstract fun provideComicsDataSource(
         smartComicDataSource: SmartComicDataSource
     ): ComicDataSource
 

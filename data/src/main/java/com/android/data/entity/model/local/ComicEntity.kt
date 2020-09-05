@@ -12,7 +12,7 @@ data class ComicEntity(
     @PrimaryKey
     val id: Int,
     val title: String,
-    val variantDescription: String,
+    val variantDescription: String?,
     @Embedded(prefix = "thumbnail_")
     val thumbnail: ThumbnailEntity
 )

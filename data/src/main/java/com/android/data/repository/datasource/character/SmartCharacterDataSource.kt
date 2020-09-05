@@ -19,8 +19,9 @@ open class SmartCharacterDataSource @Inject constructor(
     private val characterDao: CharacterDao
 ) : CharacterDataSource {
 
+    @VisibleForTesting
     @Volatile
-    private var _page: Int = 1
+    var _page: Int = 1
 
     @VisibleForTesting
     @Volatile

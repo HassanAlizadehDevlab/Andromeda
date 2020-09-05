@@ -19,8 +19,9 @@ class SmartComicDataSource @Inject constructor(
     private val comicDao: ComicDao
 ) : ComicDataSource {
 
+    @VisibleForTesting
     @Volatile
-    private var _page: Int = 1
+    var _page: Int = 1
 
     @VisibleForTesting
     @Volatile
@@ -44,6 +45,7 @@ class SmartComicDataSource @Inject constructor(
 
     override fun loadComics(characterId: Int): Completable {
         return resetPage()
+            .andThen(setCharacterId(characterId))
             .andThen(getQueryParams())
             .flatMap { service.comics(_characterId, it) }
             .flatMap { setTotalCount(it.data.total).toSingle { it } }
@@ -73,6 +75,10 @@ class SmartComicDataSource @Inject constructor(
 
     private fun setTotalCount(totalCount: Int): Completable {
         return Completable.fromAction { this._totalCount = totalCount }
+    }
+
+    private fun setCharacterId(characterId: Int): Completable {
+        return Completable.fromAction { this._characterId = characterId }
     }
 
     private fun getQueryParams(): Single<MutableMap<String, String>> {

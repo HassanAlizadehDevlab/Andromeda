@@ -108,6 +108,9 @@ class SmartCharacterDataSourceTest {
             .characters(anyMap())
 
         // WHEN
+        smartCharacterDataSource.loadCharacters()
+            .test()
+            .assertComplete()
         smartCharacterDataSource.loadMoreCharacters()
             .test()
             .assertComplete()
@@ -116,10 +119,8 @@ class SmartCharacterDataSourceTest {
             .assertComplete()
 
         // THEN
-        verify(dataService).characters(
-            argThat {
-                this[offset].equals(1.toString())
-            })
+        verify(dataService, atLeastOnce()).characters(anyMap())
+        assert(smartCharacterDataSource._page == page)
     }
 
     companion object {

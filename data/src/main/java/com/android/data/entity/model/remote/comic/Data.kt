@@ -7,6 +7,6 @@ import com.google.gson.annotations.SerializedName
  */
 data class Data(
     val total: Int,
-    @SerializedName("result")
+    @SerializedName("results")
     val comics: List<Comic>
 )
