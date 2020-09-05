@@ -11,7 +11,7 @@ import retrofit2.http.QueryMap
 interface DataServiceCharacter {
 
     @GET("public/characters")
-    fun venues(
+    fun characters(
         @QueryMap map: Map<String, String>
     ): Single<Response>
 

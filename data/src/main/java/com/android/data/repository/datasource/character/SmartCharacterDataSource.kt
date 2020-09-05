@@ -41,29 +41,29 @@ open class SmartCharacterDataSource @Inject constructor(
     override fun loadCharacters(): Completable {
         return resetPage()
             .andThen(getQueryParams())
-            .flatMap { service.venues(it) }
+            .flatMap { service.characters(it) }
             .flatMap { setTotalCount(it.data.total).toSingle { it } }
-            .flatMap { clearVenues().toSingle { it } }
-            .flatMapCompletable { insertVenues(it.data.characters.map()) }
+            .flatMap { clearCharacters().toSingle { it } }
+            .flatMapCompletable { insertCharacters(it.data.characters.map()) }
             .onError()
     }
 
     override fun loadMoreCharacters(): Completable {
         return getQueryParams()
-            .flatMap { service.venues(it) }
+            .flatMap { service.characters(it) }
             .flatMap { increasePage().toSingle { it } }
-            .flatMapCompletable { insertVenues(it.data.characters.map()) }
+            .flatMapCompletable { insertCharacters(it.data.characters.map()) }
             .onError()
     }
 
 
-    private fun insertVenues(venues: List<CharacterEntity>?): Completable {
-        if (venues.isNullOrEmpty()) return Completable.complete()
-        return Completable.fromAction { characterDao.insert(venues) }
+    private fun insertCharacters(characters: List<CharacterEntity>?): Completable {
+        if (characters.isNullOrEmpty()) return Completable.complete()
+        return Completable.fromAction { characterDao.insert(characters) }
             .onError()
     }
 
-    private fun clearVenues(): Completable {
+    private fun clearCharacters(): Completable {
         return Completable.fromAction { characterDao.deleteAll() }
     }
 

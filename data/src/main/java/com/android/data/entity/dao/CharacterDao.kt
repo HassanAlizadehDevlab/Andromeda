@@ -15,7 +15,7 @@ import io.reactivex.Single
 interface CharacterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(venues: List<CharacterEntity>)
+    fun insert(characters: List<CharacterEntity>)
 
     @Query("SELECT * FROM character WHERE id=:id")
     fun selectById(id: Int): Single<CharacterEntity>

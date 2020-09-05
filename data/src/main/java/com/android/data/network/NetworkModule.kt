@@ -12,7 +12,7 @@ class NetworkModule {
 
     @Provides
     @Reusable
-    fun venuesDataService(dataServiceFactory: DataServiceFactory): DataServiceCharacter =
+    fun characterDataService(dataServiceFactory: DataServiceFactory): DataServiceCharacter =
         dataServiceFactory.create(DataServiceCharacter::class.java)
 
 }
