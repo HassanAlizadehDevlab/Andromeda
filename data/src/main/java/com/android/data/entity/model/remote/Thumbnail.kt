@@ -1,4 +1,4 @@
-package com.android.data.entity.model.remote.character
+package com.android.data.entity.model.remote
 
 data class Thumbnail(
 	val path: String,

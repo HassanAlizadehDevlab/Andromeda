@@ -7,11 +7,12 @@ import androidx.room.PrimaryKey
 /**
  * Created by hassanalizadeh on 05,September,2020
  */
-@Entity(tableName = "character")
-data class CharacterEntity(
+@Entity(tableName = "comic")
+data class ComicEntity(
     @PrimaryKey
     val id: Int,
     val name: String,
+    val variantDescription: String,
     @Embedded(prefix = "thumbnail_")
     val thumbnail: ThumbnailEntity
 )

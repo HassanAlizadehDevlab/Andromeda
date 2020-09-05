@@ -15,4 +15,9 @@ class NetworkModule {
     fun characterDataService(dataServiceFactory: DataServiceFactory): DataServiceCharacter =
         dataServiceFactory.create(DataServiceCharacter::class.java)
 
+    @Provides
+    @Reusable
+    fun comicDataService(dataServiceFactory: DataServiceFactory): DataServiceComic =
+        dataServiceFactory.create(DataServiceComic::class.java)
+
 }
