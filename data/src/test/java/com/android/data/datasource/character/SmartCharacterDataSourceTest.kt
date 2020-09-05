@@ -1,4 +1,4 @@
-package com.android.data
+package com.android.data.datasource.character
 
 import com.android.common.error.ErrorThrowable
 import com.android.common_test.TestUtil

@@ -8,7 +8,7 @@ import io.reactivex.Flowable
  * Created by hassanalizadeh on 29,August,2020
  */
 interface CharacterRepository {
-    fun venues(): Flowable<CharactersObject>
-    fun loadVenues(): Completable
-    fun loadMoreVenues(): Completable
+    fun characters(): Flowable<CharactersObject>
+    fun loadCharacters(): Completable
+    fun loadMoreCharacters(): Completable
 }
