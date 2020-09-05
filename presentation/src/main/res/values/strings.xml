@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="category">Category</string>
+    <string name="status_is_">Status: %s</string>
+    <string name="rate_is_">Rate: %s</string>
+    <string name="cancel">انصراف</string>
+    <string name="show_app_permissions_setting">فعالسازی</string>
+    <string name="inadequate_location_settings">تنظیمات مکان‌یابی گوشی شما برای انجام این عمل کافی نیست. برای بررسی
+        بیشتر به بخش تنظیمات گوشی مراجعه کنید.
+    </string>
+    <string name="need_app_location_permissions_setting">برای استفاده از این قسمت باید دسترسی به سرویس مکان‌یابی را فعال کنید.</string>
+</resources>
