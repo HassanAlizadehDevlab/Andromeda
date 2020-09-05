@@ -1,7 +1,7 @@
 package com.android.data
 
 import com.android.common_test.TestUtil
-import com.android.data.entity.mapper.map
+import com.android.data.entity.mapper.mapCharacters
 import com.android.data.repository.CharacterRepositoryImpl
 import com.android.data.repository.datasource.character.CharacterDataSource
 import com.android.domain.repository.CharacterRepository
@@ -37,7 +37,7 @@ class CharacterRepositoryImplTest {
     @Test
     fun `get characters`() {
         //GIVEN
-        doReturn(Flowable.just(Pair(0, TestUtil.charactersFromRemote().data.characters.map())))
+        doReturn(Flowable.just(Pair(0, TestUtil.charactersFromRemote().data.characters.mapCharacters())))
             .whenever(dataSource).characters()
 
         //WHEN

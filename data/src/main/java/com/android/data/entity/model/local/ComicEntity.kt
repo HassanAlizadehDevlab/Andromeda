@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
 data class ComicEntity(
     @PrimaryKey
     val id: Int,
-    val name: String,
+    val title: String,
     val variantDescription: String,
     @Embedded(prefix = "thumbnail_")
     val thumbnail: ThumbnailEntity

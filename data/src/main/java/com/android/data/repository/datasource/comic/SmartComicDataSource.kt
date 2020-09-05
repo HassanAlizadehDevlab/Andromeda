@@ -1,11 +1,11 @@
-package com.android.data.repository.datasource.character
+package com.android.data.repository.datasource.comic
 
 import androidx.annotation.VisibleForTesting
-import com.android.data.entity.dao.CharacterDao
-import com.android.data.entity.mapper.mapCharacters
-import com.android.data.entity.model.local.CharacterEntity
+import com.android.data.entity.dao.ComicDao
+import com.android.data.entity.mapper.mapComics
+import com.android.data.entity.model.local.ComicEntity
 import com.android.data.extension.onError
-import com.android.data.network.DataServiceCharacter
+import com.android.data.network.DataServiceComic
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -14,10 +14,10 @@ import javax.inject.Inject
 /**
  * Created by hassanalizadeh on 29,August,2020
  */
-open class SmartCharacterDataSource @Inject constructor(
-    private val service: DataServiceCharacter,
-    private val characterDao: CharacterDao
-) : CharacterDataSource {
+class SmartComicDataSource @Inject constructor(
+    private val service: DataServiceComic,
+    private val comicDao: ComicDao
+) : ComicDataSource {
 
     @Volatile
     private var _page: Int = 1
@@ -26,9 +26,13 @@ open class SmartCharacterDataSource @Inject constructor(
     @Volatile
     var _totalCount: Int = 0
 
+    @VisibleForTesting
+    @Volatile
+    var _characterId: Int = 0
 
-    override fun characters(): Flowable<Pair<Int, List<CharacterEntity>>> {
-        return characterDao.selectAll()
+
+    override fun comics(): Flowable<Pair<Int, List<ComicEntity>>> {
+        return comicDao.selectAll()
             .map {
                 return@map if (_totalCount == 0)
                     it.size to it
@@ -38,33 +42,33 @@ open class SmartCharacterDataSource @Inject constructor(
             .onError()
     }
 
-    override fun loadCharacters(): Completable {
+    override fun loadComics(characterId: Int): Completable {
         return resetPage()
             .andThen(getQueryParams())
-            .flatMap { service.characters(it) }
+            .flatMap { service.comics(_characterId, it) }
             .flatMap { setTotalCount(it.data.total).toSingle { it } }
-            .flatMap { clearCharacters().toSingle { it } }
-            .flatMapCompletable { insertCharacters(it.data.characters.mapCharacters()) }
+            .flatMap { clearComics().toSingle { it } }
+            .flatMapCompletable { insertComics(it.data.comics.mapComics()) }
             .onError()
     }
 
-    override fun loadMoreCharacters(): Completable {
+    override fun loadMoreComics(): Completable {
         return getQueryParams()
-            .flatMap { service.characters(it) }
+            .flatMap { service.comics(_characterId, it) }
             .flatMap { increasePage().toSingle { it } }
-            .flatMapCompletable { insertCharacters(it.data.characters.mapCharacters()) }
+            .flatMapCompletable { insertComics(it.data.comics.mapComics()) }
             .onError()
     }
 
 
-    private fun insertCharacters(characters: List<CharacterEntity>?): Completable {
-        if (characters.isNullOrEmpty()) return Completable.complete()
-        return Completable.fromAction { characterDao.insert(characters) }
+    private fun insertComics(comics: List<ComicEntity>?): Completable {
+        if (comics.isNullOrEmpty()) return Completable.complete()
+        return Completable.fromAction { comicDao.insert(comics) }
             .onError()
     }
 
-    private fun clearCharacters(): Completable {
-        return Completable.fromAction { characterDao.deleteAll() }
+    private fun clearComics(): Completable {
+        return Completable.fromAction { comicDao.deleteAll() }
     }
 
     private fun setTotalCount(totalCount: Int): Completable {

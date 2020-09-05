@@ -2,6 +2,8 @@ package com.android.data.repository.datasource
 
 import com.android.data.repository.datasource.character.CharacterDataSource
 import com.android.data.repository.datasource.character.SmartCharacterDataSource
+import com.android.data.repository.datasource.comic.ComicDataSource
+import com.android.data.repository.datasource.comic.SmartComicDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Reusable
@@ -17,5 +19,11 @@ abstract class DataSourceModule {
     abstract fun provideCharactersDataSource(
         smartCharacterDataSource: SmartCharacterDataSource
     ): CharacterDataSource
+
+    @Binds
+    @Reusable
+    abstract fun provideCharactersDataSource(
+        smartComicDataSource: SmartComicDataSource
+    ): ComicDataSource
 
 }

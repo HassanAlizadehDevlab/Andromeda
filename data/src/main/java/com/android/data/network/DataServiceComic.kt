@@ -1,10 +1,9 @@
 package com.android.data.network
 
-import com.android.data.entity.model.remote.character.Response
+import com.android.data.entity.model.remote.comic.Response
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 /**
@@ -13,7 +12,7 @@ import retrofit2.http.QueryMap
 interface DataServiceComic {
 
     @GET("public/characters/{ID}/comics")
-    fun characters(
+    fun comics(
         @Path("ID") id: Int,
         @QueryMap map: Map<String, String>
     ): Single<Response>
