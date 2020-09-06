@@ -27,7 +27,6 @@ dependencies {
     implementation libraries.android.glide
     implementation libraries.dagger.support
     implementation libraries.android.liveData
-    implementation libraries.android.viewmodel
     implementation libraries.android.constraintLayout
     implementation libraries.android.androidxAppCompat
     implementation libraries.android.lifecycleExtensions
@@ -36,4 +35,9 @@ dependencies {
     implementation libraries.android.swipeRefresh
     implementation libraries.android.recyclerView
     implementation libraries.android.location
+
+    testImplementation project(':common_test')
+    testImplementation libraries.gson
+    testImplementation libraries.test.android.archCore
+    testImplementation libraries.test.mockito.inline
 }

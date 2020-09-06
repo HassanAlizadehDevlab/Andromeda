@@ -7,6 +7,7 @@ dependencies {
     api project(':data')
     api project(':domain')
     api project(':presentation')
+    api project(':common')
 
     implementation libraries.kotlin.kotlin
     implementation libraries.dagger.android
@@ -16,7 +17,6 @@ dependencies {
 
     testImplementation libraries.rx.java
     testImplementation libraries.android.liveData
-    testImplementation libraries.android.viewmodel
     testImplementation libraries.android.lifecycleExtensions
     testImplementation libraries.gson
     testImplementation libraries.test.android.archCore

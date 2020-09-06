@@ -17,10 +17,10 @@ ext {
             // Build
             build        : [
                     android: [
-                            tools     : '28.0.3',
+                            tools     : '29.0.2',
                             minSdk    : 17,
-                            targetSdk : 28,
-                            compileSdk: 28
+                            targetSdk : 29,
+                            compileSdk: 29
                     ]
             ],
 
