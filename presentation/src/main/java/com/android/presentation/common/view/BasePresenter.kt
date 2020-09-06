@@ -1,16 +1,15 @@
 package com.android.presentation.common.view
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.android.common.error.ErrorHandler
 import io.reactivex.*
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 /**
- * Base class for all ViewModels.
+ * Base class for all Presenters.
  */
-abstract class BaseViewModel : ViewModel() {
+abstract class BasePresenter {
 
     /**
      *  [messageObservable] is Used for error handling and it Observed in each fragment
@@ -58,8 +57,8 @@ abstract class BaseViewModel : ViewModel() {
         disposable.add(this)
     }
 
-    override fun onCleared() {
-        super.onCleared()
+    fun onCleared() {
         disposable.clear()
     }
+
 }

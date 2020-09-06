@@ -3,10 +3,14 @@ package com.android.presentation.ui
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.android.presentation.common.di.ActivityScope
+import com.android.presentation.common.di.FragmentScope
 import com.android.presentation.common.view.BaseActivityModule
+import com.android.presentation.ui.marvel.MarvelViewImpl
+import com.android.presentation.ui.marvel.MarvelViewModule
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.android.ContributesAndroidInjector
 import javax.inject.Named
 
 /**
@@ -18,6 +22,10 @@ import javax.inject.Named
     ]
 )
 abstract class MainActivityModule {
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [MarvelViewModule::class])
+    abstract fun marvelViewInjector(): MarvelViewImpl
 
     @Binds
     @ActivityScope

@@ -14,7 +14,7 @@ import javax.inject.Inject
 /**
  * Created by hassanalizadeh on 29,August,2020
  */
-class SmartComicDataSource @Inject constructor(
+open class SmartComicDataSource @Inject constructor(
     private val service: DataServiceComic,
     private val comicDao: ComicDao
 ) : ComicDataSource {
