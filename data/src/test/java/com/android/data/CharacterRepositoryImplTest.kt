@@ -67,7 +67,7 @@ class CharacterRepositoryImplTest {
     }
 
     @Test
-    fun `load more characterss`() {
+    fun `load more characters`() {
         //GIVEN
         doReturn(Completable.complete()).whenever(dataSource).loadMoreCharacters()
 
