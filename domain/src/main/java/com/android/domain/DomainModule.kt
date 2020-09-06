@@ -1,6 +1,7 @@
 package com.android.domain
 
 import com.android.domain.entity.CharactersObject
+import com.android.domain.entity.ComicsObject
 import com.android.domain.executor.transformer.AsyncCTransformer
 import com.android.domain.executor.transformer.AsyncFTransformer
 import com.android.domain.executor.transformer.CTransformer
@@ -23,5 +24,10 @@ abstract class DomainModule {
     abstract fun charactersTransformer(
         transformer: AsyncFTransformer<CharactersObject>
     ): FTransformer<CharactersObject>
+
+    @Binds
+    abstract fun comicsTransformer(
+        transformer: AsyncFTransformer<ComicsObject>
+    ): FTransformer<ComicsObject>
 
 }
