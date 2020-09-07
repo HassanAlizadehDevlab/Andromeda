@@ -17,7 +17,7 @@ import com.android.domain.usecase.comic.RefreshComicsUseCase
 import com.android.domain.usecase.invoke
 import com.android.presentation.adapter.BaseAction
 import com.android.presentation.adapter.LoadMoreState
-import com.android.presentation.ui.marvel.adapter.ComicsAction
+import com.android.presentation.ui.marvel.adapter.CharacterAction
 import com.nhaarman.mockitokotlin2.argThat
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
@@ -142,7 +142,7 @@ class MarvelPresenterImplTest {
         presenter.observeClicks(clickObservable)
 
         //WHEN
-        clickObservable.onNext(ComicsAction(characterId))
+        clickObservable.onNext(CharacterAction(characterId))
 
         //THEN
         verify(view).comicsLoading(true)

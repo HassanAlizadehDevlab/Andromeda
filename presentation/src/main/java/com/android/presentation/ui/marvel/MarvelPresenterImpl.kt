@@ -15,7 +15,7 @@ import com.android.domain.usecase.invoke
 import com.android.presentation.adapter.BaseAction
 import com.android.presentation.adapter.LoadMoreState
 import com.android.presentation.common.view.BasePresenter
-import com.android.presentation.ui.marvel.adapter.ComicsAction
+import com.android.presentation.ui.marvel.adapter.CharacterAction
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
@@ -127,7 +127,7 @@ class MarvelPresenterImpl @Inject constructor(
     override fun observeClicks(actions: Observable<BaseAction>) {
         actions.subscribe {
             when (it) {
-                is ComicsAction -> refreshComics(it.data)
+                is CharacterAction -> refreshComics(it.data)
                 else -> {
                 }
             }

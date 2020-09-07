@@ -6,6 +6,6 @@ package com.android.domain.entity
 data class ComicObject(
     val id: Int,
     val title: String,
-    val variantDescription: String?,
+    val description: String?,
     val thumbnail: String
 )
