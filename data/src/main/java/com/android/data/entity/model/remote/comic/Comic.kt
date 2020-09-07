@@ -8,6 +8,6 @@ import com.android.data.entity.model.remote.Thumbnail
 data class Comic(
     val id: Int,
     val title: String,
-    val variantDescription: String?,
+    val description: String?,
     val thumbnail: Thumbnail
 )

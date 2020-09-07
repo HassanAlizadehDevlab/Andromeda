@@ -24,6 +24,6 @@ fun List<ComicEntity>.mapComics(): List<ComicObject> = map { it.mapComics() }
 fun ComicEntity.mapComics(): ComicObject = ComicObject(
     id = id,
     title = title,
-    variantDescription = variantDescription,
+    description = description,
     thumbnail = thumbnail.map()
 )
