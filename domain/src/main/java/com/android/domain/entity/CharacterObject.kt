@@ -7,4 +7,4 @@ data class CharacterObject(
     val id: Int,
     val name: String,
     val thumbnail: String,
-)
+): DomainObject

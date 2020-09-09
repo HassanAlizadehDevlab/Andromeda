@@ -6,4 +6,4 @@ package com.android.domain.entity
 data class CharactersObject(
     val totalCount: Int,
     val items: List<CharacterObject>
-)
+): DomainObject

@@ -6,4 +6,4 @@ package com.android.domain.entity
 data class ComicsObject(
     val totalCount: Int,
     val items: List<ComicObject>
-)
+): DomainObject

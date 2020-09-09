@@ -17,8 +17,8 @@ class AuthInterceptor : Interceptor {
         val bytes = (ts.toString() + BuildConfig.PRIVATE_KEY + BuildConfig.PUBLIC_KEY).md5
 
         val url = request.url.newBuilder()
-            .addQueryParameter("apikey", BuildConfig.PUBLIC_KEY)
             .addQueryParameter("ts", ts.toString())
+            .addQueryParameter("apikey", BuildConfig.PUBLIC_KEY)
             .addQueryParameter("hash", bytes)
             .build()
         request = request.newBuilder().url(url).build()

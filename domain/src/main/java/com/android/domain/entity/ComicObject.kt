@@ -8,4 +8,4 @@ data class ComicObject(
     val title: String,
     val description: String?,
     val thumbnail: String
-)
+): DomainObject
