@@ -46,6 +46,9 @@ class GridSpacingDecoration(
                 if (!noTopSpacingForFirstItem)
                     outRect.top = spacing
             }
+
+            if (noTopSpacingForFirstItem)
+                outRect.top = spacing // item top
             outRect.bottom = spacing // item bottom
         } else {
             outRect.left = column * spacing / spanCount // column * ((1f / spanCount) * spacing)
