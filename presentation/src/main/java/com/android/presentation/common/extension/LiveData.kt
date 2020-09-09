@@ -19,3 +19,19 @@ fun <X> MutableLiveData<X>.notifyObservers() {
 fun <X> MutableLiveData<X>.clear() {
     this.value = null
 }
+
+fun <T> LiveData<T>.observeOnce(onChangeHandler: (T) -> Unit) {
+    val observer = OneTimeObserver(handler = onChangeHandler)
+    observe(observer, observer)
+}
+
+fun <T> LiveData<T>.observeOnceUntil(
+    predicate: () -> Boolean,
+    onChangeHandler: (T) -> Unit
+) {
+    val observer = OneTimeObserverWithCondition(
+        handler = onChangeHandler,
+        predicate = predicate
+    )
+    observe(observer, observer)
+}

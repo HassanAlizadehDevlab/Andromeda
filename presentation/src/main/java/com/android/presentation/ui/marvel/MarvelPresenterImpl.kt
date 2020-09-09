@@ -2,6 +2,7 @@ package com.android.presentation.ui.marvel
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
+import com.android.common.extension.orFalse
 import com.android.common.extension.orZero
 import com.android.domain.entity.CharactersObject
 import com.android.domain.entity.ComicsObject
@@ -14,6 +15,7 @@ import com.android.domain.usecase.comic.RefreshComicsUseCase
 import com.android.domain.usecase.invoke
 import com.android.presentation.adapter.BaseAction
 import com.android.presentation.adapter.LoadMoreState
+import com.android.presentation.common.extension.observeOnceUntil
 import com.android.presentation.common.view.BasePresenter
 import com.android.presentation.ui.marvel.adapter.CharacterAction
 import io.reactivex.Observable
@@ -73,10 +75,24 @@ class MarvelPresenterImpl @Inject constructor(
     override fun refresh() {
         view?.loading(true)
         refreshCharactersUseCase.invoke()
-            .doOnEvent { view?.loading(false) }
+            .doOnEvent {
+                view?.loading(false)
+            }
             .onError()
-            .subscribe({}, {})
+            .subscribe({
+                observeFirstLoading()
+            }, {})
             .track()
+    }
+
+    /**
+     * Observe first characters loading to select first item automatically
+     * */
+    private fun observeFirstLoading() {
+        val predicate = { _characters.value?.items?.isNullOrEmpty()?.not().orFalse() }
+        _characters.observeOnceUntil(predicate) {
+            refreshComics(it.items.get(0).id)
+        }
     }
 
     override fun loadMoreCharacters(loadMoreObservable: PublishSubject<LoadMoreState>) {
