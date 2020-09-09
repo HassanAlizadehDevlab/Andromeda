@@ -36,6 +36,7 @@ dependencies {
     implementation libraries.retrofit.rxjavaAdapter
     implementation libraries.okHttp.logging
     implementation libraries.room.runtime
+    implementation libraries.android.core_ktx
     implementation libraries.room.rxJava
 
     testImplementation project(':common_test')
