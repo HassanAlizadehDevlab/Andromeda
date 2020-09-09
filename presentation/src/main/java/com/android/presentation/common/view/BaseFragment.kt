@@ -2,7 +2,6 @@ package com.android.presentation.common.view
 
 import android.content.Context
 import androidx.annotation.StringRes
-import com.android.presentation.adapter.BaseRecyclerAdapter
 import com.android.presentation.common.extension.toast
 import com.android.presentation.common.navigator.Navigator
 import dagger.android.support.DaggerFragment
@@ -18,8 +17,6 @@ abstract class BaseFragment : DaggerFragment() {
 
     @Inject
     protected lateinit var navigator: Navigator
-
-    protected lateinit var adapter: BaseRecyclerAdapter
 
     fun showMessage(message: MessageData) {
         if (message.message != null) {

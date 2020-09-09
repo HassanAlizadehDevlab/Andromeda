@@ -24,8 +24,6 @@ class ComicsAdapter(
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
-        super.onBindViewHolder(holder, position)
-
         val data = mItems[position]
         when (holder.getType()) {
             ViewTypeHolder.COMIC_VIEW -> (holder as ComicViewHolder).bind(data as? ComicObject)
@@ -35,8 +33,8 @@ class ComicsAdapter(
 
     companion object {
         val CONFIG = Config.Builder()
-            .setPreFetch(5)
-            .setScreenSize(3)
+            .setPreFetch(10)
+            .setScreenSize(2)
             .build()
     }
 

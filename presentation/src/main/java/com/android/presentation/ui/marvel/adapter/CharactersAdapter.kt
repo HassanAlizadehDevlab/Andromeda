@@ -24,8 +24,6 @@ class CharactersAdapter(
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
-        super.onBindViewHolder(holder, position)
-
         val data = mItems[position]
         when (holder.getType()) {
             ViewTypeHolder.CHARACTER_VIEW -> (holder as CharacterViewHolder).bind(data as? CharacterObject)
@@ -35,8 +33,8 @@ class CharactersAdapter(
 
     companion object {
         val CONFIG = Config.Builder()
-            .setPreFetch(5)
-            .setScreenSize(3)
+            .setPreFetch(2)
+            .setScreenSize(4)
             .build()
     }
 

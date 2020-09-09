@@ -6,7 +6,7 @@ import com.android.presentation.adapter.BaseViewHolder
 import com.android.presentation.adapter.ViewTypeHolder
 import com.android.presentation.common.utils.Utils
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_character.view.*
 
@@ -23,9 +23,10 @@ class CharacterViewHolder(
         data ?: return
 
         // Set data to view
+        val radious = Utils.convertDpToPx(containerView.context, 8f)
         Glide.with(containerView)
             .load(data.thumbnail)
-            .transform(RoundedCorners(Utils.convertDpToPx(containerView.context, 8f).toInt()))
+            .transform(GranularRoundedCorners(radious, radious, radious, radious))
             .into(containerView.characterImage)
 
         containerView.characterName.text = data.name

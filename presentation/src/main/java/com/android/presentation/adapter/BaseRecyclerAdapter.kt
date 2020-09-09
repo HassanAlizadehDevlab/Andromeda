@@ -2,6 +2,7 @@ package com.android.presentation.adapter
 
 
 import android.os.Handler
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.domain.entity.DomainObject
 import com.android.domain.entity.LoadMoreObject
@@ -19,6 +20,7 @@ abstract class BaseRecyclerAdapter() : RecyclerView.Adapter<BaseViewHolder<*>>()
     var isFinished: Boolean = false
     private var mConfig: Config? = null
     private var disposable = CompositeDisposable()
+    private lateinit var layoutManager: LinearLayoutManager
 
 
     constructor(config: Config) : this() {
@@ -34,13 +36,13 @@ abstract class BaseRecyclerAdapter() : RecyclerView.Adapter<BaseViewHolder<*>>()
         return mItems.size
     }
 
-    override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
+    private fun loadMore() {
         if (mConfig != null) {
             if (loadMoreState == LoadMoreState.NOT_LOAD &&
                 mItems.size > mConfig!!.screenSize &&
                 !isFinished &&
                 mItems.size >= mConfig!!.preFetchCount &&
-                position >= (mItems.size - mConfig!!.preFetchCount)
+                layoutManager.findLastVisibleItemPosition() >= (mItems.size - mConfig!!.preFetchCount)
             ) {
                 loadMoreObservable.onNext(LoadMoreState.LOAD)
             }
@@ -129,6 +131,13 @@ abstract class BaseRecyclerAdapter() : RecyclerView.Adapter<BaseViewHolder<*>>()
                 handler.removeCallbacks(this)
             }
         })
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.layoutManager = recyclerView.layoutManager as LinearLayoutManager
+
+        recyclerView.addOnScrollListener(MyScrollListener { loadMore() })
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
