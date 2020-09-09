@@ -7,15 +7,6 @@
     android:background="@color/colorDivider"
     android:orientation="vertical">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/loadingIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCharacters"
         android:layout_width="match_parent"
@@ -29,17 +20,27 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/adapter_character" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewComics"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/loadingIndicator"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewCharacters"
-        tools:listitem="@layout/adapter_comic" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewCharacters">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewComics"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:listitem="@layout/adapter_comic" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/loadingComics"

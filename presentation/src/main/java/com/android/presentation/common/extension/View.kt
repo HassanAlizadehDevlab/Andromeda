@@ -30,3 +30,9 @@ fun View.enable() {
 fun View.disable() {
     this.isEnabled = false
 }
+
+fun View.isVisible() = this.visibility == View.VISIBLE
+
+fun View.isInVisible() = this.visibility == View.INVISIBLE
+
+fun View.isGone() = this.visibility == View.GONE
