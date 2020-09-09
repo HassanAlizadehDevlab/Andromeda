@@ -17,7 +17,7 @@ fun CharacterEntity.map(): CharacterObject = CharacterObject(
     thumbnail = thumbnail.map()
 )
 
-fun ThumbnailEntity.map(): String = this.path.plus(this.extension)
+fun ThumbnailEntity.map(): String = this.path.plus(".").plus(this.extension)
 
 fun List<ComicEntity>.mapComics(): List<ComicObject> = map { it.mapComics() }
 
