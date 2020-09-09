@@ -120,7 +120,7 @@ class SmartCharacterDataSourceTest {
 
         // THEN
         verify(dataService, atLeastOnce()).characters(anyMap())
-        assert(smartCharacterDataSource._page == page)
+        assert(smartCharacterDataSource._page == page + 1)
     }
 
     companion object {

@@ -125,7 +125,7 @@ class SmartComicDataSourceTest {
 
         // THEN
         verify(dataService, atLeastOnce()).comics(eq(characterId), anyMap())
-        assert(smartComicDataSource._page == page)
+        assert(smartComicDataSource._page == page + 1)
     }
 
     companion object {

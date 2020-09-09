@@ -51,14 +51,15 @@ open class SmartComicDataSource @Inject constructor(
             .flatMap { setTotalCount(it.data.total).toSingle { it } }
             .flatMap { clearComics().toSingle { it } }
             .flatMapCompletable { insertComics(it.data.comics.mapComics()) }
+            .andThen(increasePage())
             .onError()
     }
 
     override fun loadMoreComics(): Completable {
         return getQueryParams()
             .flatMap { service.comics(_characterId, it) }
-            .flatMap { increasePage().toSingle { it } }
             .flatMapCompletable { insertComics(it.data.comics.mapComics()) }
+            .andThen(increasePage())
             .onError()
     }
 

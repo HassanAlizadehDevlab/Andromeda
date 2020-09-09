@@ -46,14 +46,15 @@ open class SmartCharacterDataSource @Inject constructor(
             .flatMap { setTotalCount(it.data.total).toSingle { it } }
             .flatMap { clearCharacters().toSingle { it } }
             .flatMapCompletable { insertCharacters(it.data.characters.mapCharacters()) }
+            .andThen(increasePage())
             .onError()
     }
 
     override fun loadMoreCharacters(): Completable {
         return getQueryParams()
             .flatMap { service.characters(it) }
-            .flatMap { increasePage().toSingle { it } }
             .flatMapCompletable { insertCharacters(it.data.characters.mapCharacters()) }
+            .andThen(increasePage())
             .onError()
     }
 
