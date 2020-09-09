@@ -11,12 +11,12 @@ class AppPreferences @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : PreferencesHelper {
 
-    override fun setLastTimeVisited(timestamp: Long) {
-        sharedPreferences.edit { putLong(VISITED_TIME, timestamp) }
+    override fun setLastTimeVisited(time: String) {
+        sharedPreferences.edit { putString(VISITED_TIME, time) }
     }
 
-    override fun getLastTimeVisited(): Long {
-        return sharedPreferences.getLong(VISITED_TIME, 0)
+    override fun getLastTimeVisited(): String {
+        return sharedPreferences.getString(VISITED_TIME, "").toString()
     }
 
     companion object {

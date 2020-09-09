@@ -1,4 +1,4 @@
-package com.android.data.datasource
+package com.android.data.repository
 
 import com.android.common_test.TestUtil
 import com.android.data.entity.mapper.mapComics

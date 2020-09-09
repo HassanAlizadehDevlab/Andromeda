@@ -1,4 +1,4 @@
-package com.android.data
+package com.android.data.repository
 
 import com.android.common_test.TestUtil
 import com.android.data.entity.mapper.mapCharacters

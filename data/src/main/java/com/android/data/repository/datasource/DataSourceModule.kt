@@ -4,6 +4,8 @@ import com.android.data.repository.datasource.character.CharacterDataSource
 import com.android.data.repository.datasource.character.SmartCharacterDataSource
 import com.android.data.repository.datasource.comic.ComicDataSource
 import com.android.data.repository.datasource.comic.SmartComicDataSource
+import com.android.data.repository.datasource.visitTime.SmartVisitTimeDataSource
+import com.android.data.repository.datasource.visitTime.VisitTimeDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Reusable
@@ -25,5 +27,11 @@ abstract class DataSourceModule {
     abstract fun provideComicsDataSource(
         smartComicDataSource: SmartComicDataSource
     ): ComicDataSource
+
+    @Binds
+    @Reusable
+    abstract fun provideVisitTimeDataSource(
+        smartVisitTimeDataSource: SmartVisitTimeDataSource
+    ): VisitTimeDataSource
 
 }

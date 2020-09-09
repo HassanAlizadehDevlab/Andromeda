@@ -1,10 +1,9 @@
-package com.android.data.datasource.character
+package com.android.data.repository.datasource.character
 
 import com.android.common.error.ErrorThrowable
 import com.android.common_test.TestUtil
 import com.android.data.entity.dao.CharacterDao
 import com.android.data.network.DataServiceCharacter
-import com.android.data.repository.datasource.character.SmartCharacterDataSource
 import com.nhaarman.mockitokotlin2.argThat
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Flowable

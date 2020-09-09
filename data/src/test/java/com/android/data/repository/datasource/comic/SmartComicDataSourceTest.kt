@@ -1,10 +1,9 @@
-package com.android.data.datasource.comic
+package com.android.data.repository.datasource.comic
 
 import com.android.common.error.ErrorThrowable
 import com.android.common_test.TestUtil
 import com.android.data.entity.dao.ComicDao
 import com.android.data.network.DataServiceComic
-import com.android.data.repository.datasource.comic.SmartComicDataSource
 import com.nhaarman.mockitokotlin2.argThat
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Flowable

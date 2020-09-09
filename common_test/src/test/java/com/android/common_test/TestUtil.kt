@@ -20,8 +20,10 @@ object TestUtil {
     }
 
     fun comicsFromRemote(): com.android.data.entity.model.remote.comic.Response {
-        return Gson().fromJson(parseJson("comics.json"),
-            com.android.data.entity.model.remote.comic.Response::class.java)
+        return Gson().fromJson(
+            parseJson("comics.json"),
+            com.android.data.entity.model.remote.comic.Response::class.java
+        )
     }
 
     fun firstCharacterFromRemote(): Character {
